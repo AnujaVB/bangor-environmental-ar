@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Bangor Environmental AR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
+
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div id="overlay">
+        <h2>Bangor Environmental AR</h2>
+        <p>Scan the Hiro marker to view environmental data.</p>
+        <button id="switchLocation">Switch Location</button>
+        <p id="locationLabel">Current Location: Pontio</p>
+    </div>
+
+    <a-scene embedded
+             arjs="sourceType: webcam; debugUIEnabled: false;"
+             renderer="logarithmicDepthBuffer: true;"
+             vr-mode-ui="enabled: false">
+        <a-marker preset="hiro">
+            <a-entity id="chartRoot" position="0 0 0">
+                <a-text id="titleText"
+                        value="Pontio Environmental Data"
+                        position="-1.2 1.7 0"
+                        scale="0.8 0.8 0.8"
+                        color="white"></a-text>
+
+                <a-box id="tempBar" position="-0.8 0.5 0" depth="0.3" width="0.3" height="1"></a-box>
+                <a-box id="humidBar" position="0 0.5 0" depth="0.3" width="0.3" height="1"></a-box>
+                <a-box id="aqiBar" position="0.8 0.5 0" depth="0.3" width="0.3" height="1"></a-box>
+
+                <a-text id="tempLabel" position="-1.1 -0.35 0" scale="0.55 0.55 0.55" color="yellow"></a-text>
+                <a-text id="humidLabel" position="-0.3 -0.35 0" scale="0.55 0.55 0.55" color="cyan"></a-text>
+                <a-text id="aqiLabel" position="0.55 -0.35 0" scale="0.55 0.55 0.55" color="lightgreen"></a-text>
+
+                <a-plane id="infoPanel"
+                         position="0 1.95 0"
+                         rotation="-90 0 0"
+                         width="2.8"
+                         height="0.55"
+                         color="#222"></a-plane>
+
+                <a-text id="infoText"
+                        value="Tap a bar to learn more"
+                        position="-1.2 1.95 0.02"
+                        scale="0.5 0.5 0.5"
+                        color="white"></a-text>
+            </a-entity>
+        </a-marker>
+
+        <a-entity camera></a-entity>
+    </a-scene>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,7 +1,22 @@
 const locations = [
-  { name: "Pontio", temperature: 18, humidity: 70, aqi: 42 },
-  { name: "Bangor Library", temperature: 20, humidity: 60, aqi: 35 },
-  { name: "Main Arts Building", temperature: 16, humidity: 75, aqi: 50 }
+  {
+    name: "Pontio",
+    temperature: 18,
+    humidity: 70,
+    aqi: 42
+  },
+  {
+    name: "Bangor Library",
+    temperature: 20,
+    humidity: 60,
+    aqi: 35
+  },
+  {
+    name: "Main Arts Building",
+    temperature: 16,
+    humidity: 75,
+    aqi: 50
+  }
 ];
 
 let currentIndex = 0;
@@ -62,32 +77,27 @@ function updateScene() {
   );
 }
 
-function bindBarInteraction(id, message) {
-  const el = document.getElementById(id);
-
-  const handler = () => {
-    document.getElementById("infoText").setAttribute("value", message);
-    console.log(`${id} clicked`);
-  };
-
-  el.addEventListener("click", handler);
-  el.addEventListener("mousedown", handler);
-  el.addEventListener("touchstart", handler);
-}
-
 function addInteractions() {
-  bindBarInteraction(
-    "tempBar",
-    "Temperature shows the thermal condition of this location."
-  );
-  bindBarInteraction(
-    "humidBar",
-    "Humidity shows the amount of moisture in the air."
-  );
-  bindBarInteraction(
-    "aqiBar",
-    "AQI indicates the relative air quality level."
-  );
+  document.getElementById("tempBar").addEventListener("click", () => {
+    document.getElementById("infoText").setAttribute(
+      "value",
+      "Temperature shows the thermal condition of this location."
+    );
+  });
+
+  document.getElementById("humidBar").addEventListener("click", () => {
+    document.getElementById("infoText").setAttribute(
+      "value",
+      "Humidity shows the amount of moisture in the air."
+    );
+  });
+
+  document.getElementById("aqiBar").addEventListener("click", () => {
+    document.getElementById("infoText").setAttribute(
+      "value",
+      "AQI indicates the relative air quality level."
+    );
+  });
 }
 
 document.getElementById("switchLocation").addEventListener("click", () => {
